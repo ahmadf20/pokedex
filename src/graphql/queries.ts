@@ -1,12 +1,16 @@
-export const GET_POKEMON = `
-  query GetPokemon($limit: Int!, $offset: Int!) {
-    gen3_species: pokemonspecies(limit: $limit, offset: $offset) {
+import { gql } from "@apollo/client";
+
+export const GET_POKEMON = gql`
+  query GetPokemon {
+    gen3_species: pokemonspecies {
       id
       name
-    }
-    pokemonspecies_aggregate {
-      aggregate {
-        count
+      pokemons {
+        pokemontypes {
+          type {
+            name
+          }
+        }
       }
     }
   }

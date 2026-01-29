@@ -24,8 +24,8 @@ export const PokemonList = ({ data }: { data: GetPokemonResponse }) => {
 
   return (
     <div className="flex flex-col gap-6 text-black relative">
-      <div className="flex gap-6 items-center flex-wrap">
-        <div className="w-full  sm:flex-1">
+      <div className="flex gap-6 items-end flex-wrap">
+        <div className="w-full max-w-md sm:flex-1">
           <SearchInput onChange={(e) => setSearch(e)} value={search} />
         </div>
         <div>
@@ -53,7 +53,7 @@ export const PokemonList = ({ data }: { data: GetPokemonResponse }) => {
 
       <button
         type="button"
-        className="fixed bottom-4 right-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-all duration-300 ease-in-out "
+        className="fixed bottom-4 right-4 text-black font-bold py-2 px-4 rounded-full border border-gray-300 bg-white focus:outline-none transition-colors"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       >
         Scroll to top

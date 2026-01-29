@@ -18,7 +18,7 @@ export const PokemonCard = ({ pokemon }: { pokemon: Pokemon }) => {
   return (
     <div
       key={pokemon.id}
-      className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 transform hover:-translate-y-1"
+      className="bg-white rounded-xl overflow-hidden duration-300 transform hover:-translate-y-1 border border-gray-300 focus:outline-none transition-colors appearance-none cursor-pointer hover:border-gray-400"
     >
       <div className="p-4 flex flex-col items-center">
         <div className="w-32 h-32 relative">

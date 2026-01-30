@@ -22,15 +22,27 @@ export function PokemonDetailCard({
   const basicInfo = [
     { label: "Height", value: `${pokemon.height / 10} m` },
     { label: "Weight", value: `${pokemon.weight / 10} kg` },
-    { label: "Base Experience", value: pokemon.base_experience.toString() },
     { label: "Generation", value: species.generation_id.toString() },
     {
-      label: "Pokemon Habitat",
-      value: capitalize(species.pokemonhabitat.name),
+      label: "Base Experience",
+      value: pokemon.base_experience.toString() ?? "Unknown",
     },
-    { label: "Growth Rate", value: capitalize(species.growthrate.name) },
-    { label: "Capture Rate", value: species.capture_rate.toString() },
-    { label: "Base Happiness", value: species.base_happiness.toString() },
+    {
+      label: "Pokemon Habitat",
+      value: capitalize(species.pokemonhabitat?.name ?? "Unknown"),
+    },
+    {
+      label: "Growth Rate",
+      value: capitalize(species.growthrate?.name ?? "Unknown"),
+    },
+    {
+      label: "Capture Rate",
+      value: species.capture_rate.toString() ?? "Unknown",
+    },
+    {
+      label: "Base Happiness",
+      value: species.base_happiness.toString() ?? "Unknown",
+    },
   ];
 
   return (
@@ -59,7 +71,7 @@ export function PokemonDetailCard({
           </Link>
 
           <Link
-            href={`/compare?pokemon1=${pokemon.name}`}
+            href={`/compare?names=${pokemon.name}`}
             className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
           >
             <svg

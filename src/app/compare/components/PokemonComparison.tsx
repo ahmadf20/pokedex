@@ -222,18 +222,18 @@ export function PokemonComparison({
 
                     return (
                       <div key={stat1.stat.name}>
-                        <div className="flex justify-between mb-2">
+                        <div className="flex justify-between mb-2 gap-2">
                           <span className="text-sm font-medium text-gray-700 capitalize">
                             {formatName(stat1.stat.name)}
                           </span>
-                          <div className="flex gap-4 text-sm flex-wrap">
+                          <div className="flex gap-x-2 text-sm flex-wrap">
                             {pokemonData.map((data, index) => {
                               const statValue = statValues[index];
                               const maxVal = Math.max(...statValues);
                               const isHighest =
                                 statValue === maxVal &&
                                 statValues.filter((v) => v === maxVal)
-                                  .length === 1;
+                                  .length !== statValues.length;
 
                               return (
                                 <span

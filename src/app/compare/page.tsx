@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { Suspense, useMemo } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { PokemonComparison } from "./components/PokemonComparison";
 import {
@@ -10,6 +10,14 @@ import {
 import { useRouter } from "next/navigation";
 
 export default function ComparePage() {
+  return (
+    <Suspense>
+      <ComparePageClient />
+    </Suspense>
+  );
+}
+
+function ComparePageClient() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -56,7 +64,6 @@ export default function ComparePage() {
         />
         <PokemonComparison
           selectedPokemons={selectedPokemons}
-          onSelectPokemon={addPokemonToCompare}
           onRemovePokemon={removePokemonFromCompare}
         />
       </div>

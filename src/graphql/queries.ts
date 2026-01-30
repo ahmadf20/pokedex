@@ -59,3 +59,47 @@ export const GET_POKEMON_BY_NAME = gql`
     }
   }
 `;
+
+export const GET_POKEMON_BY_NAME_COMPARISON = gql`
+  query GetPokemonComparison($names: [String!]!) {
+    species: pokemonspecies(where: { name: { _in: $names } }) {
+      id
+      name
+      generation_id
+      base_happiness
+      capture_rate
+      growthrate {
+        name
+      }
+      pokemonhabitat {
+        name
+      }
+      pokemonspeciesflavortexts(limit: 1, order_by: { id: asc }) {
+        flavor_text
+      }
+    }
+    pokemon(where: { name: { _in: $names } }) {
+      id
+      name
+      height
+      weight
+      base_experience
+      pokemonstats {
+        base_stat
+        stat {
+          name
+        }
+      }
+      pokemontypes {
+        type {
+          name
+        }
+      }
+      pokemonabilities {
+        ability {
+          name
+        }
+      }
+    }
+  }
+`;

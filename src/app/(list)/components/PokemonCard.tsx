@@ -16,7 +16,7 @@ export const PokemonCard = ({ pokemon }: { pokemon: Species }) => {
   return (
     <Link
       key={pokemon.id}
-      href={`/pokemon/${pokemon.name}`}
+      href={`/detail/${pokemon.name}`}
       className="bg-white rounded-xl overflow-hidden duration-300 transform hover:-translate-y-1 border border-gray-300 focus:outline-none transition-colors appearance-none cursor-pointer hover:border-gray-400"
     >
       <div className="p-4 flex flex-col items-center">

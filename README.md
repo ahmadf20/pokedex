@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Project Plan – Pokémon Explorer (Next.js + GraphQL)
 
-## Getting Started
+## Objective
 
-First, run the development server:
+Build a Pokémon explorer web app inspired by the reference Pokedex, focusing on **clarity of logic, clean code structure, and sound technical decisions** rather than visual perfection.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Tech stack:
+
+* Next.js (App Router)
+* TypeScript
+* TailwindCSS
+* GraphQL (https://graphql.pokeapi.co/v1beta2)
+
+---
+
+## High-level Approach
+
+* Fetch Pokémon data once using GraphQL
+* Perform search, filter, sort, and comparison **client-side**
+* Keep data logic centralized and UI components simple
+* Optimize for readability, maintainability, and predictable data flow
+
+### Core Features
+
+#### 1. Search
+
+* Case-insensitive search by Pokémon name or ID
+* Client-side filtering
+
+#### 2. Filter
+
+* Filter by Pokémon type
+* Type list derived from fetched Pokémon data
+* Pokémon matches if it has **any** selected type
+
+#### 3. Sort
+
+* Sort by name (A–Z)
+* Sort by ID
+* Sorting applied after search and filter
+
+#### 4. Comparison
+
+* Select up to 5 Pokémon
+* Side-by-side comparison view
+* Clear selection and removal behavior
+
+### Data Flow Strategy
+
+```
+rawPokemonList
+  → search (debounced)
+  → filter
+  → sort
+  → visiblePokemon
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Architecture Decisions
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* Centralize logic in a custom hook (`usePokemonList`)
+* Avoid unnecessary GraphQL refetching
+* Use debouncing for search to improve performance
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Key Technical Decisions
 
-## Learn More
+### Client-side Data Processing
 
-To learn more about Next.js, take a look at the following resources:
+* Dataset size (~1025 Pokémon) is small enough for in-memory filtering
+* Enables instant UI interactions
+* Avoids unnecessary network requests
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Pagination
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* PokeAPI GraphQL only supports limit and offset
+* Pagination not required for this scope
+* Client-side processing preferred for clarity
 
-## Deploy on Vercel
+### Pokémon Types for Filter
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Derived from Pokémon list data
+* Single source of truth
+* Avoids additional GraphQL queries
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Future Improvements (Out of Scope)
+
+* Server-side filtering and pagination for large datasets
+* Cursor-based pagination (if API supports it)
+* Advanced UI polish and animations
+* Accessibility enhancements
+* Testing
+* Code generation
+* Linting and formatting

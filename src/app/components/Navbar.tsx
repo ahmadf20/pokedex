@@ -1,8 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import Image from "next/image";
 
 type NavLink = {
   name: string;
@@ -12,8 +8,6 @@ type NavLink = {
 const navLinks: NavLink[] = [{ name: "Compare", href: "/compare" }];
 
 export function Navbar() {
-  const pathname = usePathname();
-
   return (
     <nav className="bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

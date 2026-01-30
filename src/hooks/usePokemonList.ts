@@ -4,12 +4,10 @@ import { useDebounce } from "./useDebounce";
 
 export const usePokemonList = ({ data }: { data: Species[] }) => {
   const [search, setSearch] = useState("");
-  const [deboundcedSearch, setDebouncedSearch] = useState(search);
-
   const [selectedType, setSelectedType] = useState<string>("");
   const [selectedSort, setSelectedSort] = useState<string>("");
 
-  useDebounce(() => setDebouncedSearch(search), [search], 300);
+  const debouncedSearch = useDebounce(search, 300);
 
   const typeOptions = useMemo(() => {
     const allTypes = new Set<string>();
@@ -32,18 +30,21 @@ export const usePokemonList = ({ data }: { data: Species[] }) => {
   }, []);
 
   const filteredData = useMemo(() => {
-    if (!deboundcedSearch && !selectedType) return data;
+    if (!debouncedSearch && !selectedType) return data;
+
+    // TODO: need to clear filter and sort when search is changed
+    // TODO: might want to save the search, filter and sort to the URL
 
     return data.filter(
       (pokemon) =>
-        (pokemon.name.toLowerCase().includes(deboundcedSearch.toLowerCase()) ||
-          pokemon.id.toString().padStart(3, "0").includes(deboundcedSearch)) &&
+        (pokemon.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+          pokemon.id.toString().padStart(3, "0").includes(debouncedSearch)) &&
         (selectedType === "" ||
           pokemon.pokemons
             .at(0)
             ?.types.some((type) => type.type.name === selectedType)),
     );
-  }, [data, deboundcedSearch, selectedType]);
+  }, [data, debouncedSearch, selectedType]);
 
   const sortedData = useMemo(() => {
     if (!selectedSort) return filteredData;

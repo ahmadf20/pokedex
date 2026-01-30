@@ -6,6 +6,7 @@ import { MemoizedPokemonCard } from "./PokemonCard";
 import { SearchInput } from "./SearchInput";
 import { FilterSelection } from "./FilterSelection";
 import { SortSelection } from "./SortSelection";
+import { useEffect, useState } from "react";
 
 export const PokemonList = ({ data }: { data: GetPokemonListResponse }) => {
   const {
@@ -21,6 +22,21 @@ export const PokemonList = ({ data }: { data: GetPokemonListResponse }) => {
   } = usePokemonList({
     data: data.species,
   });
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
 
   return (
     <div className="flex flex-col gap-6 text-black relative">
@@ -51,13 +67,28 @@ export const PokemonList = ({ data }: { data: GetPokemonListResponse }) => {
         ))}
       </div>
 
-      <button
-        type="button"
-        className="fixed bottom-4 right-4 text-black font-bold py-2 px-4 rounded-full border border-gray-300 bg-white focus:outline-none transition-colors"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      >
-        Scroll to top
-      </button>
+      {isVisible && (
+        <button
+          type="button"
+          className="fixed bottom-4 right-4 text-black font-bold p-3 rounded-full border border-gray-300 bg-white hover:bg-gray-50 focus:outline-none transition-colors shadow-md cursor-pointer"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          aria-label="Scroll to top"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 15l7-7 7 7"
+            />
+          </svg>
+        </button>
+      )}
     </div>
   );
 };

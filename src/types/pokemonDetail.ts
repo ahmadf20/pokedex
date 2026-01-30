@@ -43,7 +43,7 @@ export type Species = {
   growthrate: {
     name: string;
   };
-  pokemonhabitat: {
+  pokemonhabitat?: {
     name: string;
   };
   pokemonspeciesflavortexts: PokemonSpeciesFlavorText[];

@@ -1,17 +1,12 @@
-import { DependencyList, EffectCallback, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export const useDebounce = (
-  callback: EffectCallback,
-  deps: DependencyList = [],
-  delay: number = 500,
-) => {
+export function useDebounce<T>(value: T, delay = 500) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
   useEffect(() => {
-    const timer = setTimeout(() => {
-      callback();
-    }, delay);
-
+    const timer = setTimeout(() => setDebouncedValue(value), delay);
     return () => clearTimeout(timer);
+  }, [value, delay]);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [...deps, delay]);
-};
+  return debouncedValue;
+}

@@ -92,7 +92,7 @@ export function PokemonDetailCard({
         </div>
 
         {/* Main Content */}
-        <div className="bg-white rounded-xl border overflow-hidden">
+        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
           {/* Header Section */}
           <div className="bg-linear-to-r from-blue-500 to-purple-600 text-white p-8">
             <div className="flex flex-col md:flex-row items-center gap-8">
@@ -144,7 +144,7 @@ export function PokemonDetailCard({
                 {basicInfo.map((info) => (
                   <div
                     key={info.label}
-                    className="flex justify-between py-2 border-b"
+                    className="flex justify-between py-2 border-b border-gray-200"
                   >
                     <span className="text-gray-600">{info.label}</span>
                     <span className="font-medium text-gray-900">

@@ -76,7 +76,7 @@ export const AddPokemonButton = ({
 
       {dropdownOpen && (
         <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-10 min-w-[280px] max-w-[320px]">
-          <div className="p-3 border-b">
+          <div className="p-3 border-b border-gray-200">
             <input
               type="text"
               placeholder="Search Pokémon..."

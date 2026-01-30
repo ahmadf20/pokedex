@@ -25,6 +25,7 @@ export function PokemonComparison({
     data: queryData,
     loading,
     previousData,
+    error,
   } = useQuery<GetPokemonDetailResponse>(GET_POKEMON_BY_NAME_COMPARISON, {
     variables: { names: selectedPokemons },
   });
@@ -71,10 +72,13 @@ export function PokemonComparison({
     },
   ];
 
-  if (loading && !pokemonData.length && selectedPokemons.length) {
+  const isLoading = loading && pokemonData.length < selectedPokemons.length;
+
+  if (error) {
     return (
-      <div className="flex justify-center py-12">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+      <div className=" text-red-500 py-2">
+        Error loading Pokémon data <br />
+        {error.message}
       </div>
     );
   }
@@ -90,7 +94,7 @@ export function PokemonComparison({
                 key={data.pokemon.name}
                 className="min-w-[280px] max-w-[320px]"
               >
-                <div className="flex-1 bg-white rounded-xl border overflow-hidden">
+                <div className="flex-1 bg-white rounded-xl border border-gray-200 overflow-hidden">
                   <div className="bg-linear-to-r from-blue-500 to-purple-600 text-white p-6">
                     <div className="text-center">
                       <div className="relative w-32 h-32 mx-auto mb-4">
@@ -125,7 +129,7 @@ export function PokemonComparison({
                     <button
                       type="button"
                       onClick={() => onRemovePokemon(data.pokemon.name)}
-                      className="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                      className="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors cursor-pointer"
                     >
                       Remove
                     </button>
@@ -133,13 +137,17 @@ export function PokemonComparison({
                 </div>
               </div>
             ))}
+
+            {isLoading && (
+              <div className="min-w-[278px] min-h-[378px] bg-gray-200 animate-pulse rounded-xl"></div>
+            )}
           </div>
 
           {pokemonData.length > 0 && (
             <>
               {/* Comparison Table */}
-              <div className="bg-white rounded-xl border overflow-hidden">
-                <div className="p-6 border-b">
+              <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div className="p-6 border-b border-gray-200">
                   <h3 className="text-xl font-bold text-gray-800">
                     Detailed Comparison
                   </h3>
@@ -164,7 +172,10 @@ export function PokemonComparison({
                     </thead>
                     <tbody>
                       {detailInfo.map((info) => (
-                        <tr className="border-b" key={info.label}>
+                        <tr
+                          className="border-b border-gray-200"
+                          key={info.label}
+                        >
                           <td className="py-3 px-4 font-medium text-gray-700">
                             {info.label}
                           </td>
@@ -199,8 +210,8 @@ export function PokemonComparison({
               </div>
 
               {/* Stats Comparison */}
-              <div className="bg-white rounded-xl border overflow-hidden">
-                <div className="p-6 border-b">
+              <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div className="p-6 border-b border-gray-200">
                   <h3 className="text-xl font-bold text-gray-800">
                     Base Stats Comparison
                   </h3>
@@ -288,8 +299,8 @@ export function PokemonComparison({
               </div>
 
               {/* Abilities Comparison */}
-              <div className="bg-white rounded-xl border overflow-hidden">
-                <div className="p-6 border-b">
+              <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div className="p-6 border-b border-gray-200">
                   <h3 className="text-xl font-bold text-gray-800">
                     Abilities Comparison
                   </h3>

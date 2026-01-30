@@ -86,6 +86,7 @@ rawPokemonList
 ## Future Improvements (Out of Scope)
 
 * Server-side filtering and pagination for large datasets
+* URL persistence for search, filter, and sort (if needed)
 * Cursor-based pagination (if API supports it)
 * Advanced UI polish and animations
 * Accessibility enhancements

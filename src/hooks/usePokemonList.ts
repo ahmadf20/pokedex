@@ -32,9 +32,6 @@ export const usePokemonList = ({ data }: { data: Species[] }) => {
   const filteredData = useMemo(() => {
     if (!debouncedSearch && !selectedType) return data;
 
-    // TODO: need to clear filter and sort when search is changed
-    // TODO: might want to save the search, filter and sort to the URL
-
     return data.filter(
       (pokemon) =>
         (pokemon.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
@@ -66,10 +63,19 @@ export const usePokemonList = ({ data }: { data: Species[] }) => {
     });
   }, [filteredData, selectedSort]);
 
+  const onSearchChange = (value: string) => {
+    setSearch(value);
+
+    setTimeout(() => {
+      setSelectedType("");
+      setSelectedSort("");
+    }, 300);
+  };
+
   return {
     pokemonList: sortedData,
     search,
-    setSearch,
+    onSearchChange,
     typeOptions,
     selectedType,
     setSelectedType,

@@ -12,7 +12,7 @@ export const PokemonList = ({ data }: { data: GetPokemonListResponse }) => {
   const {
     pokemonList,
     search,
-    setSearch,
+    onSearchChange,
     typeOptions,
     selectedType,
     setSelectedType,
@@ -42,7 +42,7 @@ export const PokemonList = ({ data }: { data: GetPokemonListResponse }) => {
     <div className="flex flex-col gap-6 text-black relative">
       <div className="flex gap-6 items-end flex-wrap">
         <div className="w-full max-w-md sm:flex-1">
-          <SearchInput onChange={(e) => setSearch(e)} value={search} />
+          <SearchInput onChange={(e) => onSearchChange(e)} value={search} />
         </div>
         <div>
           <FilterSelection

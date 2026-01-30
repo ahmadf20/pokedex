@@ -1,10 +1,10 @@
 import { graphqlFetch } from "@/lib/graphqlFetch";
 import { GET_POKEMON } from "@/graphql/queries";
 import { PokemonList } from "./components/PokemonList";
-import { GetPokemonResponse } from "./types/pokemon";
+import { GetPokemonListResponse } from "../types/pokemonList";
 
 export default async function Page() {
-  const data = await graphqlFetch<GetPokemonResponse>({
+  const data = await graphqlFetch<GetPokemonListResponse>({
     query: GET_POKEMON?.loc?.source.body || "",
   });
 

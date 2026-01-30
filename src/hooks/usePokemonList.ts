@@ -1,10 +1,11 @@
-import { Pokemon } from "@/app/types/pokemon";
+import { Species } from "@/app/types/pokemonList";
 import { useMemo, useState } from "react";
 import { useDebounce } from "./useDebounce";
 
-export const usePokemonList = ({ data }: { data: Pokemon[] }) => {
+export const usePokemonList = ({ data }: { data: Species[] }) => {
   const [search, setSearch] = useState("");
   const [deboundcedSearch, setDebouncedSearch] = useState(search);
+
   const [selectedType, setSelectedType] = useState<string>("");
   const [selectedSort, setSelectedSort] = useState<string>("");
 
@@ -13,7 +14,7 @@ export const usePokemonList = ({ data }: { data: Pokemon[] }) => {
   const typeOptions = useMemo(() => {
     const allTypes = new Set<string>();
     data.forEach((pokemon) => {
-      pokemon.pokemons.at(0)?.pokemontypes.forEach((type) => {
+      pokemon.pokemons.at(0)?.types.forEach((type) => {
         allTypes.add(type.type.name);
       });
     });
@@ -40,7 +41,7 @@ export const usePokemonList = ({ data }: { data: Pokemon[] }) => {
         (selectedType === "" ||
           pokemon.pokemons
             .at(0)
-            ?.pokemontypes.some((type) => type.type.name === selectedType)),
+            ?.types.some((type) => type.type.name === selectedType)),
     );
   }, [data, deboundcedSearch, selectedType]);
 

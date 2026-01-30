@@ -1,13 +1,13 @@
 "use client";
 
 import { usePokemonList } from "@/hooks/usePokemonList";
-import { GetPokemonResponse } from "../types/pokemon";
+import { GetPokemonListResponse } from "../../types/pokemonList";
 import { MemoizedPokemonCard } from "./PokemonCard";
 import { SearchInput } from "./SearchInput";
 import { FilterSelection } from "./FilterSelection";
 import { SortSelection } from "./SortSelection";
 
-export const PokemonList = ({ data }: { data: GetPokemonResponse }) => {
+export const PokemonList = ({ data }: { data: GetPokemonListResponse }) => {
   const {
     pokemonList,
     search,
@@ -19,7 +19,7 @@ export const PokemonList = ({ data }: { data: GetPokemonResponse }) => {
     selectedSort,
     setSelectedSort,
   } = usePokemonList({
-    data: data.gen3_species,
+    data: data.species,
   });
 
   return (

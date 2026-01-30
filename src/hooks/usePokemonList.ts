@@ -1,4 +1,4 @@
-import { Species } from "@/app/types/pokemonList";
+import { Species } from "@/types/pokemonList";
 import { useMemo, useState } from "react";
 import { useDebounce } from "./useDebounce";
 

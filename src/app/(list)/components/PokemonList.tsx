@@ -1,7 +1,7 @@
 "use client";
 
 import { usePokemonList } from "@/hooks/usePokemonList";
-import { GetPokemonListResponse } from "../../types/pokemonList";
+import { GetPokemonListResponse } from "../../../types/pokemonList";
 import { MemoizedPokemonCard } from "./PokemonCard";
 import { SearchInput } from "./SearchInput";
 import { FilterSelection } from "./FilterSelection";

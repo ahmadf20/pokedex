@@ -1,4 +1,4 @@
-import { GetPokemonDetailResponse } from "@/app/types/pokemonDetail";
+import { GetPokemonDetailResponse } from "@/types/pokemonDetail";
 import { GET_POKEMON_BY_NAME } from "@/graphql/queries";
 import { graphqlFetch } from "@/lib/graphqlFetch";
 import Link from "next/link";

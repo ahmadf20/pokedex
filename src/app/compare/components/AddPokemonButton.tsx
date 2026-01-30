@@ -1,5 +1,5 @@
-import { GetPokemonListResponse } from "@/app/types/pokemonList";
-import { getPokemonImageUrl } from "@/app/utils/common";
+import { GetPokemonListResponse } from "@/types/pokemonList";
+import { getPokemonImageUrl } from "@/utils/common";
 import { GET_POKEMON } from "@/graphql/queries";
 import { useQuery } from "@apollo/client/react";
 import Image from "next/image";

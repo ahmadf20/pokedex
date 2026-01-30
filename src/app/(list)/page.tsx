@@ -1,7 +1,7 @@
 import { graphqlFetch } from "@/lib/graphqlFetch";
 import { GET_POKEMON } from "@/graphql/queries";
 import { PokemonList } from "./components/PokemonList";
-import { GetPokemonListResponse } from "../types/pokemonList";
+import { GetPokemonListResponse } from "../../types/pokemonList";
 
 export default async function Page() {
   const data = await graphqlFetch<GetPokemonListResponse>({

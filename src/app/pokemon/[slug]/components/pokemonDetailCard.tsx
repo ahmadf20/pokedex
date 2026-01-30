@@ -1,6 +1,6 @@
-import { Pokemon, Species } from "@/app/types/pokemonDetail";
-import { capitalize } from "@/app/utils/formatter";
-import { getPokemonImageUrl } from "@/app/utils/common";
+import { Pokemon, Species } from "@/types/pokemonDetail";
+import { capitalize } from "@/utils/formatter";
+import { getPokemonImageUrl } from "@/utils/common";
 import Image from "next/image";
 import Link from "next/link";
 

@@ -5,10 +5,10 @@ import {
   GetPokemonDetailResponse,
   Pokemon,
   Species,
-} from "@/app/types/pokemonDetail";
+} from "@/types/pokemonDetail";
 import { GET_POKEMON_BY_NAME_COMPARISON } from "@/graphql/queries";
-import { capitalize } from "@/app/utils/formatter";
-import { getPokemonImageUrl } from "@/app/utils/common";
+import { capitalize } from "@/utils/formatter";
+import { getPokemonImageUrl } from "@/utils/common";
 import Image from "next/image";
 import { useQuery } from "@apollo/client/react";
 

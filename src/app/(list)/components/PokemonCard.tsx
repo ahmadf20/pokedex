@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { Species } from "../../types/pokemonList";
+import { Species } from "../../../types/pokemonList";
 import { memo } from "react";
 import Link from "next/link";
-import { getPokemonImageUrl } from "../../utils/common";
+import { getPokemonImageUrl } from "../../../utils/common";
 
 export const PokemonCard = ({ pokemon }: { pokemon: Species }) => {
   const formatName = (name: string) => {
